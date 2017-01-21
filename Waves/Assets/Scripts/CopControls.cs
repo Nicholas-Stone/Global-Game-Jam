@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class CopControls : MonoBehaviour {
 
-    public bool w, a, s, d;
+    public bool w = true, a = true, s = true, d = true;
+    public GameObject wcar = null;
+
 
     // Use this for initialization
     void Start () {
@@ -15,8 +17,11 @@ public class CopControls : MonoBehaviour {
 	void Update () {
         if (Input.GetKeyDown("w"))
         {
-            w = true;
-            print("w");
+            w = !w;
+            if (w && wcar != null)
+            {
+                wcar.GetComponent<CarMovement>().pass = true;
+            }
         }
         if (Input.GetKeyDown("a"))
         {
@@ -25,12 +30,12 @@ public class CopControls : MonoBehaviour {
         }
         if (Input.GetKeyDown("s"))
         {
-            s = true;
+            s = !s;
             print("s");
         }
         if (Input.GetKeyDown("d"))
         {
-            d = true;
+            d = !d;
             print("d");
         }
     }
