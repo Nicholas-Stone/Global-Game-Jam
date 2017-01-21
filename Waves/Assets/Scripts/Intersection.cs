@@ -17,7 +17,6 @@ public class Intersection : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        print("hi");
         if (col.gameObject.tag == "wcar")
         {
             col.gameObject.GetComponentInParent<CarMovement>().pass = GetComponentInParent<CopControls>().w;
