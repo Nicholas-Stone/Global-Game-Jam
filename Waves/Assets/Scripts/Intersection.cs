@@ -20,10 +20,8 @@ public class Intersection : MonoBehaviour {
         print("hi");
         if (col.gameObject.tag == "wcar")
         {
-            //set pass bool to true or false depending on w toggle
             col.gameObject.GetComponentInParent<CarMovement>().pass = GetComponentInParent<CopControls>().w;
-            //if can't pass
-            if (!col.gameObject.GetComponentInParent<CarMovement>().pass)
+            if(!col.gameObject.GetComponentInParent<CarMovement>().pass)
             {
                 //get all cars in direction that haven't passed
                 GameObject[] allWCar = GameObject.FindGameObjectsWithTag("wcar");
@@ -36,5 +34,55 @@ public class Intersection : MonoBehaviour {
             }
             col.gameObject.GetComponentInParent<CarMovement>().hit = true;
         }
+		if (col.gameObject.tag == "acar")
+        {
+            col.gameObject.GetComponentInParent<CarMovement>().pass = GetComponentInParent<CopControls>().a;
+            if(!col.gameObject.GetComponentInParent<CarMovement>().pass)
+            {
+                //get all cars in direction that haven't passed
+                GameObject[] allWCar = GameObject.FindGameObjectsWithTag("acar");
+                GetComponentInParent<CopControls>().acar = Array.FindAll(allWCar, car => !car.GetComponent<CarMovement>().pass);
+                //set all cars to stop
+                foreach (GameObject car in GetComponentInParent<CopControls>().acar)
+                {
+                    car.GetComponent<CarMovement>().stopped = true;
+                }
+            }
+            col.gameObject.GetComponentInParent<CarMovement>().hit = true;
+        }
+		if (col.gameObject.tag == "scar")
+        {
+            col.gameObject.GetComponentInParent<CarMovement>().pass = GetComponentInParent<CopControls>().s;
+            if(!col.gameObject.GetComponentInParent<CarMovement>().pass)
+            {
+                //get all cars in direction that haven't passed
+                GameObject[] allWCar = GameObject.FindGameObjectsWithTag("scar");
+                GetComponentInParent<CopControls>().scar = Array.FindAll(allWCar, car => !car.GetComponent<CarMovement>().pass);
+                //set all cars to stop
+                foreach (GameObject car in GetComponentInParent<CopControls>().scar)
+                {
+                    car.GetComponent<CarMovement>().stopped = true;
+                }
+            }
+            col.gameObject.GetComponentInParent<CarMovement>().hit = true;
+        }
+		if (col.gameObject.tag == "dcar")
+        {
+            col.gameObject.GetComponentInParent<CarMovement>().pass = GetComponentInParent<CopControls>().d;
+            if(!col.gameObject.GetComponentInParent<CarMovement>().pass)
+            {
+                //get all cars in direction that haven't passed
+                GameObject[] allWCar = GameObject.FindGameObjectsWithTag("dcar");
+                GetComponentInParent<CopControls>().dcar = Array.FindAll(allWCar, car => !car.GetComponent<CarMovement>().pass);
+                //set all cars to stop
+                foreach (GameObject car in GetComponentInParent<CopControls>().dcar)
+                {
+                    car.GetComponent<CarMovement>().stopped = true;
+                }
+            }
+            col.gameObject.GetComponentInParent<CarMovement>().hit = true;
+        }
     }
 }
+
+//once car arrives at intersection, if set to not pass, car stops, if set to pass, car moves

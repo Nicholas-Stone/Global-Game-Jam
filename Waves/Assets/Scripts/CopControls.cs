@@ -6,6 +6,9 @@ public class CopControls : MonoBehaviour {
 
     public bool w = true, a = true, s = true, d = true;
     public GameObject[] wcar;
+	public GameObject[] acar;
+	public GameObject[] scar;
+	public GameObject[] dcar;
 
 
     // Use this for initialization
@@ -32,17 +35,44 @@ public class CopControls : MonoBehaviour {
         if (Input.GetKeyDown("a"))
         {
             a = !a;
-            print("a");
+            if (a && acar != null && acar.Length > 0)
+            {
+                // set each car in direction to movings
+                foreach (GameObject car in acar)
+                {
+                    car.GetComponent<CarMovement>().stopped = false;
+                }
+                //set front car to pass intersection
+                acar[acar.Length - 1].GetComponent<CarMovement>().pass = true;
+            }
         }
         if (Input.GetKeyDown("s"))
         {
             s = !s;
-            print("s");
+            if (s && scar != null && scar.Length > 0)
+            {
+                // set each car in direction to movings
+                foreach (GameObject car in scar)
+                {
+                    car.GetComponent<CarMovement>().stopped = false;
+                }
+                //set front car to pass intersection
+                scar[scar.Length - 1].GetComponent<CarMovement>().pass = true;
+            }
         }
         if (Input.GetKeyDown("d"))
         {
             d = !d;
-            print("d");
+            if (d && dcar != null && dcar.Length > 0)
+            {
+                // set each car in direction to movings
+                foreach (GameObject car in dcar)
+                {
+                    car.GetComponent<CarMovement>().stopped = false;
+                }
+                //set front car to pass intersection
+                dcar[dcar.Length - 1].GetComponent<CarMovement>().pass = true;
+            }
         }
     }
 }
