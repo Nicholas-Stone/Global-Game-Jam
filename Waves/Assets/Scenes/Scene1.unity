@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -761,7 +761,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: 214b71ca2652b1346b05e351bf2cdc9f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3e9e5afff52499243a07c31f4399a168, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -856,11 +856,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4243027434723958, guid: daffaeda99e5ca64490020153c3f38ae, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 12
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4243027434723958, guid: daffaeda99e5ca64490020153c3f38ae, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 6.5
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4243027434723958, guid: daffaeda99e5ca64490020153c3f38ae, type: 2}
       propertyPath: m_LocalPosition.z

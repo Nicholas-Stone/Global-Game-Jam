@@ -8,6 +8,9 @@ TagManager:
   - intersection
   - car
   - wcar
+  - acar
+  - scar
+  - dcar
   layers:
   - Default
   - TransparentFX

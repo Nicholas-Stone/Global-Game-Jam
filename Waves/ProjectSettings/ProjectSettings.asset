@@ -37,9 +37,8 @@ PlayerSettings:
     y: 0
     width: 1
     height: 1
-  m_SplashScreenLogos:
-  - logo: {fileID: 21300000, guid: efa35e24c1cee8f4bbfa16d3e3801f9b, type: 3}
-    duration: 10
+  m_SplashScreenLogos: [{logo: {fileID: 21300000, guid: efa35e24c1cee8f4bbfa16d3e3801f9b,
+        type: 3}, duration: 10}]
   m_SplashScreenBackgroundLandscape: {fileID: 0}
   m_SplashScreenBackgroundPortrait: {fileID: 0}
   m_VirtualRealitySplashScreen: {fileID: 0}
@@ -207,13 +206,8 @@ PlayerSettings:
     banner: {fileID: 0}
   androidGamepadSupportLevel: 0
   resolutionDialogBanner: {fileID: 0}
-  m_BuildTargetIcons:
-  - m_BuildTarget: 
-    m_Icons:
-    - serializedVersion: 2
-      m_Icon: {fileID: 0}
-      m_Width: 128
-      m_Height: 128
+  m_BuildTargetIcons: [{m_BuildTarget: '', m_Icons: [{serializedVersion: 2, m_Icon: {
+            fileID: 0}, m_Width: 128, m_Height: 128}]}]
   m_BuildTargetBatching: []
   m_BuildTargetGraphicsAPIs: []
   m_BuildTargetVRSettings: []
@@ -462,6 +456,7 @@ PlayerSettings:
   vrEditorSettings: {}
   cloudServicesEnabled:
     Collab: 1
+    UNet: 1
   cloudProjectId: 5133bfd0-60f7-4e80-81c3-a80886a38baa
   projectName: Waves
   organizationId: xankuroi
