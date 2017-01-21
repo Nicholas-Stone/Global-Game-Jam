@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -307,6 +307,42 @@ GameObject:
   m_PrefabParentObject: {fileID: 1418099274821252, guid: daffaeda99e5ca64490020153c3f38ae,
     type: 2}
   m_PrefabInternal: {fileID: 1749510616}
+--- !u!60 &435692156
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 435692155}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  m_Points:
+    m_Paths:
+    - - {x: -2.3415394, y: 0.73511887}
+      - {x: -0.054250717, y: -0.7714329}
+      - {x: 0.7574482, y: -0.24460411}
+      - {x: -1.5596371, y: 1.2562752}
+--- !u!60 &435692157
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 435692155}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  m_Points:
+    m_Paths:
+    - - {x: -1.447485, y: 0.14653206}
+      - {x: 0.17671013, y: -0.9055424}
+      - {x: 0.95861244, y: -0.3936119}
+      - {x: -0.710289, y: 0.6825943}
 --- !u!1 &762652746
 GameObject:
   m_ObjectHideFlags: 0
@@ -890,6 +926,35 @@ Prefab:
       propertyPath: m_TagString
       value: car
       objectReference: {fileID: 0}
+    - target: {fileID: 114849662680586682, guid: daffaeda99e5ca64490020153c3f38ae,
+        type: 2}
+      propertyPath: w
+      value: 
+      objectReference: {fileID: 21300000, guid: 6700ef85d4b324d44ba2003c77275cb6,
+        type: 3}
+    - target: {fileID: 114849662680586682, guid: daffaeda99e5ca64490020153c3f38ae,
+        type: 2}
+      propertyPath: a
+      value: 
+      objectReference: {fileID: 21300000, guid: 03e00b1598a909843b0ffeb25c880259,
+        type: 3}
+    - target: {fileID: 114849662680586682, guid: daffaeda99e5ca64490020153c3f38ae,
+        type: 2}
+      propertyPath: s
+      value: 
+      objectReference: {fileID: 21300000, guid: 0523db7dbf9cbb9408a2694448b3effc,
+        type: 3}
+    - target: {fileID: 114849662680586682, guid: daffaeda99e5ca64490020153c3f38ae,
+        type: 2}
+      propertyPath: d
+      value: 
+      objectReference: {fileID: 21300000, guid: d16854d6cd0332244bddbb7b11017b1d,
+        type: 3}
+    - target: {fileID: 61852646101248482, guid: daffaeda99e5ca64490020153c3f38ae,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: daffaeda99e5ca64490020153c3f38ae, type: 2}
   m_IsPrefabParent: 0
@@ -986,6 +1051,7 @@ GameObject:
   - component: {fileID: 2095044832}
   - component: {fileID: 2095044834}
   - component: {fileID: 2095044835}
+  - component: {fileID: 2095044836}
   m_Layer: 0
   m_Name: Intersection
   m_TagString: intersection
@@ -1034,20 +1100,20 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2095044831}
-  m_LocalRotation: {x: 0.41987726, y: 0.17942189, z: -0.34959307, w: 0.8181049}
-  m_LocalPosition: {x: 0, y: -0.67, z: -0.004}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.7, z: 0}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_Children: []
   m_Father: {fileID: 762652748}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 54.337, y: 0, z: -46.276}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &2095044834
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2095044831}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -1066,3 +1132,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88f5528bf7ca2d34a88c8b3844813da0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!60 &2095044836
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2095044831}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  m_Points:
+    m_Paths:
+    - - {x: -0.019482195, y: 0.9285656}
+      - {x: 1.6329304, y: 0.08172581}
+      - {x: 0.0033221007, y: -0.75706494}
+      - {x: -1.6528069, y: 0.09365344}

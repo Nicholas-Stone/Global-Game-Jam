@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class CarMovement : MonoBehaviour {
 
+    public Sprite w;
+    public Sprite a;
+    public Sprite s;
+    public Sprite d;
+
     private Vector3 movement;
 	private int speed;
     GameObject cop;
@@ -39,17 +44,20 @@ public class CarMovement : MonoBehaviour {
 				this.transform.position = new Vector3(-10f, -6.5f, 0f);
 				movement = new Vector3(2, 1, 0);
 				transform.gameObject.tag ="acar";
+                GetComponent<SpriteRenderer>().sprite = a;
 				break;
 			case 'S':
 				this.transform.position = new Vector3(15f, -6.5f, 0f);
 				movement = new Vector3(-2, 1, 0);
 				transform.gameObject.tag = "scar";
-				break;
+                GetComponent<SpriteRenderer>().sprite = s;
+                break;
 			case 'D':
 				this.transform.position = new Vector3(12f, 6.5f, 0f);
 				movement = new Vector3(-2, -1, 0);
 				transform.gameObject.tag = "dcar";
-				break;
+                GetComponent<SpriteRenderer>().sprite = d;
+                break;
 			default: // don't do shit
 				break;
 		}

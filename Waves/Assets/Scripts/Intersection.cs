@@ -36,7 +36,7 @@ public class Intersection : MonoBehaviour {
         }
 		if (col.gameObject.tag == "acar")
         {
-            col.gameObject.GetComponentInParent<CarMovement>().pass = GetComponentInParent<CopControls>().w;
+            col.gameObject.GetComponentInParent<CarMovement>().pass = GetComponentInParent<CopControls>().a;
             if(!col.gameObject.GetComponentInParent<CarMovement>().pass)
             {
                 //get all cars in direction that haven't passed
@@ -52,7 +52,7 @@ public class Intersection : MonoBehaviour {
         }
 		if (col.gameObject.tag == "scar")
         {
-            col.gameObject.GetComponentInParent<CarMovement>().pass = GetComponentInParent<CopControls>().w;
+            col.gameObject.GetComponentInParent<CarMovement>().pass = GetComponentInParent<CopControls>().s;
             if(!col.gameObject.GetComponentInParent<CarMovement>().pass)
             {
                 //get all cars in direction that haven't passed
@@ -68,7 +68,7 @@ public class Intersection : MonoBehaviour {
         }
 		if (col.gameObject.tag == "dcar")
         {
-            col.gameObject.GetComponentInParent<CarMovement>().pass = GetComponentInParent<CopControls>().w;
+            col.gameObject.GetComponentInParent<CarMovement>().pass = GetComponentInParent<CopControls>().d;
             if(!col.gameObject.GetComponentInParent<CarMovement>().pass)
             {
                 //get all cars in direction that haven't passed
