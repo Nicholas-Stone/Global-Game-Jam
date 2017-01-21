@@ -20,8 +20,10 @@ public class Intersection : MonoBehaviour {
         print("hi");
         if (col.gameObject.tag == "wcar")
         {
+            //set pass bool to true or false depending on w toggle
             col.gameObject.GetComponentInParent<CarMovement>().pass = GetComponentInParent<CopControls>().w;
-            if(!col.gameObject.GetComponentInParent<CarMovement>().pass)
+            //if can't pass
+            if (!col.gameObject.GetComponentInParent<CarMovement>().pass)
             {
                 //get all cars in direction that haven't passed
                 GameObject[] allWCar = GameObject.FindGameObjectsWithTag("wcar");
@@ -36,5 +38,3 @@ public class Intersection : MonoBehaviour {
         }
     }
 }
-
-//once car arrives at intersection, if set to not pass, car stops, if set to pass, car moves

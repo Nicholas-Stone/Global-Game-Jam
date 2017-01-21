@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class CarMovement : MonoBehaviour {
 
-    public Vector3 movement;
+    public Vector3 direction;
+    public float speed = 1;
     GameObject cop;
     public bool hit = false; //hit intersection
     public bool stopped = false; // stuck in traffic
@@ -14,7 +15,6 @@ public class CarMovement : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         cop = GameObject.FindGameObjectWithTag("cop");
-        //movement = new Vector3(2, -1, 0).normalized;
 	}
 
     // Update is called once per frame
@@ -22,7 +22,15 @@ public class CarMovement : MonoBehaviour {
     {
         if ((!hit && !stopped) || pass)
         {
-            transform.position = transform.position + movement * Time.deltaTime;
+            transform.position = transform.position + direction * speed * Time.deltaTime;
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "wcar")
+        {
+            speed = Mathf.Min(speed, col.gameObject.GetComponent<CarMovement>().speed);
         }
     }
 }
