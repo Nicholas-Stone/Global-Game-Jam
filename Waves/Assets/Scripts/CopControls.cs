@@ -6,6 +6,9 @@ public class CopControls : MonoBehaviour {
 
     public bool w = true, a = true, s = true, d = true;
     public GameObject[] wcar;
+	public GameObject[] acar;
+	public GameObject[] scar;
+	public GameObject[] dcar;
 
 
     // Use this for initialization
