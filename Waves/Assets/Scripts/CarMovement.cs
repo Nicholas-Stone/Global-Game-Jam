@@ -7,6 +7,7 @@ public class CarMovement : MonoBehaviour {
     public Vector3 movement;
     GameObject cop;
     public bool hit = false; //hit intersection
+    public bool stopped = false; // stuck in traffic
     public bool pass = false; // pass intersection
     string turn = "right";
 
@@ -19,7 +20,7 @@ public class CarMovement : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (!hit || pass)
+        if ((!hit && !stopped) || pass)
         {
             transform.position = transform.position + movement * Time.deltaTime;
         }
