@@ -20,6 +20,8 @@ public class CopControls : MonoBehaviour {
     public GameObject aSign;
     public GameObject sSign;
     public GameObject dSign;
+
+    public Sprite[] copSprites;
 	
 
     // Use this for initialization
@@ -35,6 +37,7 @@ public class CopControls : MonoBehaviour {
     void Update () {
         if (Input.GetKeyDown("w"))
         {
+            GetComponent<SpriteRenderer>().sprite = copSprites[Random.Range(0, 7)];
             //toggle w direction of intersection
             w = !w;
             if (w)
@@ -58,6 +61,7 @@ public class CopControls : MonoBehaviour {
         }
         if (Input.GetKeyDown("a"))
         {
+            GetComponent<SpriteRenderer>().sprite = copSprites[Random.Range(0, 7)];
             a = !a;
             if (a)
             {
@@ -79,6 +83,7 @@ public class CopControls : MonoBehaviour {
         }
         if (Input.GetKeyDown("s"))
         {
+            GetComponent<SpriteRenderer>().sprite = copSprites[Random.Range(0, 7)];
             s = !s;
             if (s)
             {
@@ -100,6 +105,7 @@ public class CopControls : MonoBehaviour {
         }
         if (Input.GetKeyDown("d"))
         {
+            GetComponent<SpriteRenderer>().sprite = copSprites[Random.Range(0, 7)];
             d = !d;
             if (d)
             {
