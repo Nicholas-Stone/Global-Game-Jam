@@ -12,11 +12,6 @@ public class PedestrianWalk : MonoBehaviour {
     private bool notloaded = true;
 	// Use this for initialization
 	void Start () {
-        //   locations = new GameObject[8];
-        // for(int i = 0; i < 8; i++)
-        //{
-        //     locations[i] = GameObject.Find("pplspawn" + i);
-        //}
         locations = GameObject.Find("Main Camera").GetComponent<MainLoop>().locations;
         notloaded = false;
     }

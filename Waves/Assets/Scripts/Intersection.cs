@@ -41,6 +41,12 @@ public class Intersection : MonoBehaviour {
             col.gameObject.GetComponentInParent<CarMovement>().hit = true;
         }
     }
+
+    void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.gameObject.tag == "wcar" || col.gameObject.tag == "acar" || col.gameObject.tag == "scar" || col.gameObject.tag == "dcar")
+            ml.IncrementScore();
+    }
 }
 
 //once car arrives at intersection, if set to not pass, car stops, if set to pass, car moves

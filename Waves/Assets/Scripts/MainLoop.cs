@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class MainLoop : MonoBehaviour {
@@ -24,12 +25,28 @@ public class MainLoop : MonoBehaviour {
 	public List<GameObject> sCars;
 	public List<GameObject> dCars;
 	public bool wSpawn, aSpawn, sSpawn, dSpawn;
+    public float wTime = 0, aTime = 0, sTime = 0, dTime = 0;
+
+    /* Score */
+    public int numPassed;
+    public GameObject one;
+    public GameObject ten;
+    public GameObject hundred;
+
+    /* fade */
+    private bool beginFade = false;
+    public Texture2D fade;
+    private float alpha = 0.0f;
+
+    /* Honking */
+    public GameObject honk;
+    public float wHonk = 0, aHonk = 0, sHonk = 0, dHonk = 0;
 
     /* Other stuff */
     public GameObject[] locations;
-	private List<GameObject> pedestrians;
+    public GameObject lose;
+    private List<GameObject> pedestrians;
 	private string gamestate;
-	public int numPassed;
 	public int level;
 	private int lives;
 
@@ -43,21 +60,25 @@ public class MainLoop : MonoBehaviour {
 		sCars = new List<GameObject>();
 		dCars = new List<GameObject>();
 		pedestrians = new List<GameObject>();
-		lives = 5;
+		lives = 10;
 		wSpawn = true;
 		aSpawn = true;
 		sSpawn = true;
 		dSpawn = true;
-		AdvanceLevel();
-		
-		
+        AdvanceLevel();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if(gamestate == "gameover") // gameover state
+        if (Random.value < 0.01 && Random.value > 0.8)
+        {
+            honk.GetComponent<AudioSource>().Play();
+        }
+
+        if (gamestate == "gameover") // gameover state
 		{
-            print("GameOver");	
+            beginFade = true;
+            StartCoroutine(loadLose());
 		}
 		else if(gamestate == "win")
 		{
@@ -72,29 +93,36 @@ public class MainLoop : MonoBehaviour {
 			
 		}
 
-        if(Random.value < 0.01 && Random.value > 0.5)
+        if(Random.value < 0.1 && Random.value > 0.5)
         {
             switch(Random.Range(0, 4))
             {
                 case 0:
-                    SpawnCar('W', 1);
+                    if (Time.time > wTime + 2.0f)
+                        SpawnCar('W', 1);
+                    wTime = Time.time;
                     break;
                 case 1:
-                    SpawnCar('A', 1);
+                    if (Time.time > aTime + 2.0f)
+                        SpawnCar('A', 1);
+                    aTime = Time.time;
                     break;
                 case 2:
-                    SpawnCar('S', 1);
+                    if (Time.time > sTime + 2.0f)
+                        SpawnCar('S', 1);
+                    sTime = Time.time;
                     break;
                 case 3:
-                    SpawnCar('D', 1);
+                    if (Time.time > dTime + 2.0f)
+                        SpawnCar('D', 1);
+                    dTime = Time.time;
                     break;
                 default:
-                    SpawnCar('W', 1);
                     break;
             }
         }
 
-        switch (Random.Range(0, 1000))
+        switch (Random.Range(0, 750))
         {
             case 0:
                 SpawnPeople(0);
@@ -126,7 +154,25 @@ public class MainLoop : MonoBehaviour {
     }
 	// UI TIMER, COUNTER, CONTROLS
 	
-	void AdvanceLevel()
+    void OnGUI()
+    {
+        if (beginFade)
+        {
+            alpha += 0.5f * Time.deltaTime;
+            alpha = Mathf.Clamp01(alpha);
+
+            GUI.color = new Color(GUI.color.r, GUI.color.g, GUI.color.b, alpha);
+            GUI.depth = -1000;
+            GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), fade);
+        }
+    }
+
+    IEnumerator loadLose()
+    {
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene("Gameover");
+    }
+    void AdvanceLevel()
 	{
 		if(level < 0)
 		{
@@ -138,9 +184,13 @@ public class MainLoop : MonoBehaviour {
 			SpawnCar('A', 1);
 			SpawnCar('S', 1);
 			SpawnCar('D', 1);
-			// TODO spawn cars, change background, whatever
-		}
-		else if(level < 2) // Go to level 3
+            wTime = Time.time;
+            aTime = Time.time;
+            sTime = Time.time;
+            dTime = Time.time;
+            // TODO spawn cars, change background, whatever
+        }
+        else if(level < 2) // Go to level 3
 		{
 			
 		}
@@ -200,36 +250,40 @@ public class MainLoop : MonoBehaviour {
 		switch(dir)
 		{
 			case 'W':
-				print(wSpawn);
+                int wtype = Random.Range(0, 5);
+                print(wSpawn);
 				if(!wSpawn)
 					return;
 				car = Instantiate(genericCar);
 				wCars.Add(car);
-				car.GetComponent<CarMovement>().TransformCar("type", dir, spd); 
+				car.GetComponent<CarMovement>().TransformCar(wtype, dir, spd); 
 				break;
 			case 'A':
-				print(aSpawn);
+                int atype = Random.Range(0, 4);
+                print(aSpawn);
 				if(!aSpawn)
 					return;
 				car = Instantiate(genericCar);
 				aCars.Add(car);
-				car.GetComponent<CarMovement>().TransformCar("type", dir, spd); 
+				car.GetComponent<CarMovement>().TransformCar(atype, dir, spd); 
 				break;
 			case 'S':
-				print(sSpawn);
+                int stype = Random.Range(0, 4);
+                print(sSpawn);
 				if(!sSpawn)
 					return;
 				car = Instantiate(genericCar);
 				sCars.Add(car);
-				car.GetComponent<CarMovement>().TransformCar("type", dir, spd); 
+				car.GetComponent<CarMovement>().TransformCar(stype, dir, spd); 
 				break;
 			case 'D':
-				print(dSpawn);
+                int dtype = Random.Range(0, 5);
+                print(dSpawn);
 				if(!dSpawn)
 					return;
 				car = Instantiate(genericCar);
 				dCars.Add(car);
-				car.GetComponent<CarMovement>().TransformCar("type", dir, spd); 
+				car.GetComponent<CarMovement>().TransformCar(dtype, dir, spd); 
 				break;
 			default:
 				break;
@@ -245,20 +299,29 @@ public class MainLoop : MonoBehaviour {
 		
     }
 
-    void IncrementScore()
+    public void IncrementScore()
 	{
-		
-	}
+        numPassed++;
+        updateNumber(one, numPassed % 10);
+        updateNumber(ten, (numPassed / 10) % 10);
+        updateNumber(hundred, numPassed / 100);
+    }
+
+    void updateNumber(GameObject obj, int num)
+    {
+        Sprite[] nums = Resources.LoadAll<Sprite>("TextNumbers");
+        obj.GetComponent<SpriteRenderer>().sprite = nums[num];
+    }
 	
 	/* Public function */
 	public void Crash()
 	{
-        print("crashed");
-        string life = "Lives (" + lives + ")";
-        Destroy(GameObject.Find(life));
+        string life = "Lives (" + (lives / 2) + ")";
+        GameObject carLife = GameObject.Find(life);
+        if(carLife != null)
+            Destroy(carLife);
 		lives--;
 		if(lives < 1)
 			gamestate = "gameover";
 	}
-	
 }

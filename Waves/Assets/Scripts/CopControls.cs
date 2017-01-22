@@ -124,7 +124,6 @@ public class CopControls : MonoBehaviour {
                 {
                     if (car.GetComponent<CarMovement>().hit)
                         car.GetComponent<CarMovement>().pass = d;
-                   // car.GetComponent<CarMovement>().stopped = false;
                 }
             }
         }
