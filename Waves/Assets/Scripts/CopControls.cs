@@ -35,7 +35,7 @@ public class CopControls : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        if (Input.GetKeyDown("w"))
+        if (Input.GetKeyDown("q"))
         {
             GetComponent<SpriteRenderer>().sprite = copSprites[Random.Range(0, 7)];
             //toggle w direction of intersection
@@ -103,7 +103,7 @@ public class CopControls : MonoBehaviour {
                 }
             }
         }
-        if (Input.GetKeyDown("d"))
+        if (Input.GetKeyDown("w"))
         {
             GetComponent<SpriteRenderer>().sprite = copSprites[Random.Range(0, 7)];
             d = !d;

@@ -70,6 +70,12 @@ public class MainLoop : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("Logo");
+        }
+
         if (Random.value < 0.01 && Random.value > 0.8)
         {
             honk.GetComponent<AudioSource>().Play();

@@ -18,6 +18,9 @@ public class CarMovement : MonoBehaviour {
     public bool stopped = false; // stuck in traffic
     public bool pass = false; // pass intersection
     string turn;
+    char type;
+
+    public GameObject explosion;
 
 	// Use this for initialization
 	void Start () {
@@ -27,6 +30,7 @@ public class CarMovement : MonoBehaviour {
 	
 	public void TransformCar(int type, char dir, int spd)
 	{
+        this.type = dir;
 		// TODO change car types
 		switch(dir)
 		{
@@ -158,22 +162,18 @@ public class CarMovement : MonoBehaviour {
             {
                 case "wcar":
                     StartCoroutine(death(col, 'W'));
-                    //ml.Despawn('W', col.gameObject);
                     ml.Crash();
                     break;
                 case "acar":
                     StartCoroutine(death(col, 'A'));
-                    //ml.Despawn('A', col.gameObject);
                     ml.Crash();
                     break;
                 case "scar":
                     StartCoroutine(death(col, 'S'));
-                    //ml.Despawn('S', col.gameObject);
                     ml.Crash();
                     break;
                 case "dcar":
                     StartCoroutine(death(col, 'D'));
-                  //  ml.Despawn('D', col.gameObject);
                     ml.Crash();
                     break;
                 case "ppl":
@@ -189,9 +189,11 @@ public class CarMovement : MonoBehaviour {
 
     IEnumerator death(Collision2D col, char type)
     {
+        explosion.GetComponent<AudioSource>().Play();
         col.gameObject.GetComponent<Animator>().runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Car");
         yield return new WaitForSeconds(0.5f);
         ml.Despawn(type, col.gameObject);
+        ml.Despawn(this.type, this.gameObject);
     }
 
     void OnCollisionExit2D(Collision2D col)
