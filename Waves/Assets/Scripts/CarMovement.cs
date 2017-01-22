@@ -31,7 +31,7 @@ public class CarMovement : MonoBehaviour {
 				this.transform.position = new Vector3(-15f, 7f, 0f);
 				movement = new Vector3(2, -1, 0); 
 				transform.gameObject.tag = "wcar";
-                GetComponent<SpriteRenderer>().sortingOrder = 0;
+                GetComponent<SpriteRenderer>().sortingOrder = 4;
                 GetComponent<SpriteRenderer>().sprite = w;
                 GetComponent<PolygonCollider2D>().SetPath(0, new Vector2[] {new Vector2(-1.9f, 0.2f),
                                                                             new Vector2(0.4f, -1f),
@@ -53,7 +53,7 @@ public class CarMovement : MonoBehaviour {
 				this.transform.position = new Vector3(15f, -7f, 0f);
 				movement = new Vector3(-2, 1, 0);
 				transform.gameObject.tag = "scar";
-                GetComponent<SpriteRenderer>().sortingOrder = 4;
+                GetComponent<SpriteRenderer>().sortingOrder = 3;
                 GetComponent<SpriteRenderer>().sprite = s;
                 GetComponent<PolygonCollider2D>().SetPath(0, new Vector2[] {new Vector2(-1.6f, 0.1f),
                                                                             new Vector2(0.4f, -1f),
@@ -94,5 +94,10 @@ public class CarMovement : MonoBehaviour {
     void OnCollisionEnter2D(Collision2D col)
     {
         col.gameObject.GetComponent<CarMovement>().stopped = true;
+    }
+
+    void OnCollisionExit2D(Collision2D col)
+    {
+        col.gameObject.GetComponent<CarMovement>().stopped = false;
     }
 }

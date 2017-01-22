@@ -113,4 +113,12 @@ public class PedestrianWalk : MonoBehaviour {
                 break;
         }
     }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if(col.gameObject.tag == "ppl")
+        {
+            Physics2D.IgnoreCollision(col.collider, GetComponent<Collider2D>());
+        }
+    }
 }

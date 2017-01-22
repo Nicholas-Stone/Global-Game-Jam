@@ -51,8 +51,8 @@ public class CopControls : MonoBehaviour {
                 // set each car in direction to movings
                 foreach (GameObject car in ml.wCars)
                 {
-					car.GetComponent<CarMovement>().pass = w;
-                    car.GetComponent<CarMovement>().stopped = false;
+                    if(car.GetComponent<CarMovement>().hit)
+					    car.GetComponent<CarMovement>().pass = w;
                 }
             }
         }
@@ -72,8 +72,8 @@ public class CopControls : MonoBehaviour {
                 // set each car in direction to movings
                 foreach (GameObject car in ml.aCars)
                 {
-					car.GetComponent<CarMovement>().pass = a;
-                    car.GetComponent<CarMovement>().stopped = false;
+                    if (car.GetComponent<CarMovement>().hit)
+                        car.GetComponent<CarMovement>().pass = a;
                 }
             }
         }
@@ -93,8 +93,8 @@ public class CopControls : MonoBehaviour {
                 // set each car in direction to movings
                 foreach (GameObject car in ml.sCars)
                 {
-					car.GetComponent<CarMovement>().pass = s;
-                    car.GetComponent<CarMovement>().stopped = false;
+                    if (car.GetComponent<CarMovement>().hit)
+                        car.GetComponent<CarMovement>().pass = s;
                 }
             }
         }
@@ -110,15 +110,15 @@ public class CopControls : MonoBehaviour {
                 dSign.GetComponent<SpriteRenderer>().sprite = redD;
             }
 			
-            if (ml.dCars != null && ml.dCars.Count > 0)
+            if (d && ml.dCars != null && ml.dCars.Count > 0)
             {
 				print("nani");
                 // set each car in direction to movings
                 foreach (GameObject car in ml.dCars)
                 {
-					print(d);
-					car.GetComponent<CarMovement>().pass = d;
-                    car.GetComponent<CarMovement>().stopped = false;
+                    if (car.GetComponent<CarMovement>().hit)
+                        car.GetComponent<CarMovement>().pass = d;
+                   // car.GetComponent<CarMovement>().stopped = false;
                 }
             }
         }

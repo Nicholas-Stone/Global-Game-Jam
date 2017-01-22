@@ -14,42 +14,41 @@ public class SpawnCheck : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
-	
-	void OnTriggerEnter2D(Collider2D other)
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
 	{
 		switch(spawnPoint)
 		{
 			case 'W':
-				if(other.gameObject.tag == "car")
+                if (other.gameObject.tag == "wcar")
 					ml.wSpawn = false; 
 				break;
 			case 'A':
-				if(other.gameObject.tag == "car")
+				if(other.gameObject.tag == "acar")
 					ml.aSpawn = false;
 				break;
 			case 'S':
-				if(other.gameObject.tag == "car")
+				if(other.gameObject.tag == "scar")
 					ml.sSpawn = false;
 				break;
 			case 'D':
-				if(other.gameObject.tag == "car")
+				if(other.gameObject.tag == "dcar")
 					ml.dSpawn = false;
 				break;
 			default:
 				break;
 		}
 	}
-	
-	void OnTriggerExit2D(Collider2D other)
+
+    void OnTriggerExit2D(Collider2D other)
 	{
 		switch(spawnPoint)
 		{
 			case 'W':
 				if(other.gameObject.tag == "wcar")
-					ml.wSpawn = true; 
-				break;
+					ml.wSpawn = true;
+                break;
 			case 'A':
 				if(other.gameObject.tag == "acar")
 					ml.aSpawn = true;

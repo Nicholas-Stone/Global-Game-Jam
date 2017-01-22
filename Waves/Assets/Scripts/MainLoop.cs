@@ -43,6 +43,10 @@ public class MainLoop : MonoBehaviour {
 		dCars = new List<GameObject>();
 		pedestrians = new List<GameObject>();
 		lives = 5;
+		wSpawn = true;
+		aSpawn = true;
+		sSpawn = true;
+		dSpawn = true;
 		AdvanceLevel();
 		
 		
@@ -192,25 +196,45 @@ public class MainLoop : MonoBehaviour {
 	
 	void SpawnCar(char dir, int spd)
 	{
-		GameObject car = Instantiate(genericCar);
+		GameObject car;
 		switch(dir)
 		{
 			case 'W':
+				print(wSpawn);
+				if(!wSpawn)
+					return;
+				car = Instantiate(genericCar);
 				wCars.Add(car);
+				car.GetComponent<CarMovement>().TransformCar("type", dir, spd); 
 				break;
 			case 'A':
+				print(aSpawn);
+				if(!aSpawn)
+					return;
+				car = Instantiate(genericCar);
 				aCars.Add(car);
+				car.GetComponent<CarMovement>().TransformCar("type", dir, spd); 
 				break;
 			case 'S':
+				print(sSpawn);
+				if(!sSpawn)
+					return;
+				car = Instantiate(genericCar);
 				sCars.Add(car);
+				car.GetComponent<CarMovement>().TransformCar("type", dir, spd); 
 				break;
 			case 'D':
+				print(dSpawn);
+				if(!dSpawn)
+					return;
+				car = Instantiate(genericCar);
 				dCars.Add(car);
+				car.GetComponent<CarMovement>().TransformCar("type", dir, spd); 
 				break;
 			default:
 				break;
 		}
-		car.GetComponent<CarMovement>().TransformCar("type", dir, spd); // TODO CHANGE TYPE
+		
 	}
 
     void SpawnPeople(int pos)
