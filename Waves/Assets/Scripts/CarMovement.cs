@@ -9,6 +9,8 @@ public class CarMovement : MonoBehaviour {
     public Sprite s;
     public Sprite d;
 
+    public GameObject crash;
+
     private Vector3 movement;
 	private int speed;
     private MainLoop ml;
@@ -19,6 +21,7 @@ public class CarMovement : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        crash = GameObject.Find("Crash");
         ml = GameObject.Find("Main Camera").GetComponent<MainLoop>();
 	}
 	
@@ -33,10 +36,10 @@ public class CarMovement : MonoBehaviour {
 				transform.gameObject.tag = "wcar";
                 GetComponent<SpriteRenderer>().sortingOrder = 4;
                 GetComponent<SpriteRenderer>().sprite = w;
-                GetComponent<PolygonCollider2D>().SetPath(0, new Vector2[] {new Vector2(-1.9f, 0.2f),
-                                                                            new Vector2(0.4f, -1f),
-                                                                            new Vector2(1.3f, -0.5f),
-                                                                            new Vector2(-0.9f, 0.8f)});
+                GetComponent<PolygonCollider2D>().SetPath(0, new Vector2[] {new Vector2(-2.0f, 0.1f),
+                                                                            new Vector2(0.3f, -1f),
+                                                                            new Vector2(1.2f, -0.5f),
+                                                                            new Vector2(-1.0f, 0.6f)});
 				break;
 			case 'A': // A case
 				this.transform.position = new Vector3(-10.5f, -6f, 0f);
@@ -44,10 +47,10 @@ public class CarMovement : MonoBehaviour {
 				transform.gameObject.tag ="acar";
                 GetComponent<SpriteRenderer>().sortingOrder = 0;
                 GetComponent<SpriteRenderer>().sprite = a;
-                GetComponent<PolygonCollider2D>().SetPath(0, new Vector2[] {new Vector2(-1.6f, -0.4f),
+                GetComponent<PolygonCollider2D>().SetPath(0, new Vector2[] {new Vector2(-1.5f, -0.5f),
                                                                             new Vector2(-0.6f, -0.9f),
-                                                                            new Vector2(1.3f, 0.1f),
-                                                                            new Vector2(0.2f, 0.7f)});
+                                                                            new Vector2(1.2f, 0.1f),
+                                                                            new Vector2(0.4f, 0.5f)});
 				break;
 			case 'S':
 				this.transform.position = new Vector3(15f, -7f, 0f);
@@ -56,8 +59,8 @@ public class CarMovement : MonoBehaviour {
                 GetComponent<SpriteRenderer>().sortingOrder = 3;
                 GetComponent<SpriteRenderer>().sprite = s;
                 GetComponent<PolygonCollider2D>().SetPath(0, new Vector2[] {new Vector2(-1.6f, 0.1f),
-                                                                            new Vector2(0.4f, -1f),
-                                                                            new Vector2(1.3f, -0.5f),
+                                                                            new Vector2(0.5f, -1f),
+                                                                            new Vector2(1.4f, -0.5f),
                                                                             new Vector2(-0.7f, 0.6f)});
 				break;
 			case 'D':
@@ -66,10 +69,10 @@ public class CarMovement : MonoBehaviour {
 				transform.gameObject.tag = "dcar";
                 GetComponent<SpriteRenderer>().sortingOrder = 4;
                 GetComponent<SpriteRenderer>().sprite = d;
-                GetComponent<PolygonCollider2D>().SetPath(0, new Vector2[] {new Vector2(-1.6f, -0.4f),
+                GetComponent<PolygonCollider2D>().SetPath(0, new Vector2[] {new Vector2(-1.4f, -0.4f),
                                                                             new Vector2(-0.6f, -0.9f),
-                                                                            new Vector2(1.3f, 0.1f),
-                                                                            new Vector2(0.2f, 0.7f)});
+                                                                            new Vector2(1.2f, 0f),
+                                                                            new Vector2(0.4f, 0.4f)});
 				break;
 			default:
 				break;
@@ -93,7 +96,39 @@ public class CarMovement : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        col.gameObject.GetComponent<CarMovement>().stopped = true;
+        if (col.gameObject.tag == tag)
+        {
+            col.gameObject.GetComponent<CarMovement>().stopped = true;
+        }
+        else
+        {
+            crash.GetComponent<AudioSource>().Play();
+            switch (col.gameObject.tag)
+            {
+                case "wcar":
+                    ml.Despawn('W', col.gameObject);
+                    ml.Crash();
+                    break;
+                case "acar":
+                    ml.Despawn('A', col.gameObject);
+                    ml.Crash();
+                    break;
+                case "scar":
+                    ml.Despawn('S', col.gameObject);
+                    ml.Crash();
+                    break;
+                case "dcar":
+                    ml.Despawn('D', col.gameObject);
+                    ml.Crash();
+                    break;
+                case "ppl":
+                    ml.Despawn('P', col.gameObject);
+                    ml.Crash();
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 
     void OnCollisionExit2D(Collision2D col)

@@ -26,7 +26,7 @@ public class PedestrianWalk : MonoBehaviour {
     public void Transform(int pos)
     {
 		transform.gameObject.tag = "ppl";
-        int type = Random.Range(0, 2);
+        int type = Random.Range(0, 3);
         switch (pos)
         {
             case 0:

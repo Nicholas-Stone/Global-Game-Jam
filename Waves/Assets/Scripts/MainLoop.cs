@@ -56,7 +56,7 @@ public class MainLoop : MonoBehaviour {
 	void Update () {
 		if(gamestate == "gameover") // gameover state
 		{
-			
+            print("GameOver");	
 		}
 		else if(gamestate == "win")
 		{
@@ -184,7 +184,6 @@ public class MainLoop : MonoBehaviour {
 				dCars.RemoveAt(i);
 				break;
 			case 'P':
-				print("KILL");
 				i = pedestrians.IndexOf(obj);
 				Destroy(pedestrians[i]);
 				pedestrians.RemoveAt(i);
