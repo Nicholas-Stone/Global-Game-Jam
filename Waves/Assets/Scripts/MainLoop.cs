@@ -24,8 +24,9 @@ public class MainLoop : MonoBehaviour {
 	public List<GameObject> sCars;
 	public List<GameObject> dCars;
 	public bool wSpawn, aSpawn, sSpawn, dSpawn;
-	
-	/* Other stuff */
+
+    /* Other stuff */
+    public GameObject[] locations;
 	private List<GameObject> pedestrians;
 	private string gamestate;
 	public int numPassed;
@@ -252,6 +253,9 @@ public class MainLoop : MonoBehaviour {
 	/* Public function */
 	public void Crash()
 	{
+        print("crashed");
+        string life = "Lives (" + lives + ")";
+        Destroy(GameObject.Find(life));
 		lives--;
 		if(lives < 1)
 			gamestate = "gameover";

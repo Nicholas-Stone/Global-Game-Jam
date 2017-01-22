@@ -7,15 +7,18 @@ public class PedestrianWalk : MonoBehaviour {
     public string start = "W";
     public Vector3 movement;
     public float speed = 1;
-
     public static GameObject[] locations;
+
+    private bool notloaded = true;
 	// Use this for initialization
 	void Start () {
-        locations = new GameObject[8];
-        for(int i = 0; i < 8; i++)
-        {
-            locations[i] = GameObject.Find("pplspawn" + i);
-        }
+        //   locations = new GameObject[8];
+        // for(int i = 0; i < 8; i++)
+        //{
+        //     locations[i] = GameObject.Find("pplspawn" + i);
+        //}
+        locations = GameObject.Find("Main Camera").GetComponent<MainLoop>().locations;
+        notloaded = false;
     }
 	
 	// Update is called once per frame
@@ -25,7 +28,11 @@ public class PedestrianWalk : MonoBehaviour {
 
     public void Transform(int pos)
     {
-		transform.gameObject.tag = "ppl";
+        if (notloaded)
+        {
+            locations = GameObject.Find("Main Camera").GetComponent<MainLoop>().locations;
+        }
+        transform.gameObject.tag = "ppl";
         int type = Random.Range(0, 3);
         switch (pos)
         {

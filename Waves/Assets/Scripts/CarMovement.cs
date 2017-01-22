@@ -45,7 +45,7 @@ public class CarMovement : MonoBehaviour {
 				this.transform.position = new Vector3(-10.5f, -6f, 0f);
 				movement = new Vector3(2, 1, 0);
 				transform.gameObject.tag ="acar";
-                GetComponent<SpriteRenderer>().sortingOrder = 0;
+                GetComponent<SpriteRenderer>().sortingOrder = 5;
                 GetComponent<SpriteRenderer>().sprite = a;
                 GetComponent<PolygonCollider2D>().SetPath(0, new Vector2[] {new Vector2(-1.5f, -0.5f),
                                                                             new Vector2(-0.6f, -0.9f),
@@ -71,8 +71,8 @@ public class CarMovement : MonoBehaviour {
                 GetComponent<SpriteRenderer>().sprite = d;
                 GetComponent<PolygonCollider2D>().SetPath(0, new Vector2[] {new Vector2(-1.4f, -0.4f),
                                                                             new Vector2(-0.6f, -0.9f),
-                                                                            new Vector2(1.2f, 0f),
-                                                                            new Vector2(0.4f, 0.4f)});
+                                                                            new Vector2(1.6f, 0.2f),
+                                                                            new Vector2(0.9f, 0.7f)});
 				break;
 			default:
 				break;
@@ -87,21 +87,20 @@ public class CarMovement : MonoBehaviour {
         {
             transform.position = transform.position + movement * Time.deltaTime * speed;
         }
-		else if(hit)
-		{
-			GameObject.Find("Main Camera").GetComponent<MainLoop>().Crash();
-		}
     }
 
 
     void OnCollisionEnter2D(Collision2D col)
     {
+        print(col.gameObject.tag);
+
         if (col.gameObject.tag == tag)
         {
             col.gameObject.GetComponent<CarMovement>().stopped = true;
         }
-        else
+        else if (col.gameObject.tag != tag)
         {
+            print("col");
             crash.GetComponent<AudioSource>().Play();
             switch (col.gameObject.tag)
             {
