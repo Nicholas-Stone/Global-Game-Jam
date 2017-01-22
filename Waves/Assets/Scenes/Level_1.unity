@@ -1681,6 +1681,11 @@ MonoBehaviour:
   ten: {fileID: 1365836796}
   hundred: {fileID: 1357941710}
   fade: {fileID: 2800000, guid: 0ee7b2a579208df49aeaa1cfea6f9d28, type: 3}
+  honk: {fileID: 1230495810}
+  wHonk: 0
+  aHonk: 0
+  sHonk: 0
+  dHonk: 0
   locations:
   - {fileID: 1428862139}
   - {fileID: 2128608462}
@@ -1691,7 +1696,6 @@ MonoBehaviour:
   - {fileID: 1267292046}
   - {fileID: 1839245076}
   lose: {fileID: 1760902084}
-  honk: {fileID: 1230495810}
   level: 0
 --- !u!82 &1035101885
 AudioSource:
@@ -2414,6 +2418,16 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: 228fc2ab21ada72469e8a4f99110fc44,
         type: 3}
+    - target: {fileID: 95128542181233594, guid: daffaeda99e5ca64490020153c3f38ae,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 95128542181233594, guid: daffaeda99e5ca64490020153c3f38ae,
+        type: 2}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 61090923214411844, guid: daffaeda99e5ca64490020153c3f38ae, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: daffaeda99e5ca64490020153c3f38ae, type: 2}

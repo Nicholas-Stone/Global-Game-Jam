@@ -157,19 +157,23 @@ public class CarMovement : MonoBehaviour {
             switch (col.gameObject.tag)
             {
                 case "wcar":
-                    ml.Despawn('W', col.gameObject);
+                    StartCoroutine(death(col, 'W'));
+                    //ml.Despawn('W', col.gameObject);
                     ml.Crash();
                     break;
                 case "acar":
-                    ml.Despawn('A', col.gameObject);
+                    StartCoroutine(death(col, 'A'));
+                    //ml.Despawn('A', col.gameObject);
                     ml.Crash();
                     break;
                 case "scar":
-                    ml.Despawn('S', col.gameObject);
+                    StartCoroutine(death(col, 'S'));
+                    //ml.Despawn('S', col.gameObject);
                     ml.Crash();
                     break;
                 case "dcar":
-                    ml.Despawn('D', col.gameObject);
+                    StartCoroutine(death(col, 'D'));
+                  //  ml.Despawn('D', col.gameObject);
                     ml.Crash();
                     break;
                 case "ppl":
@@ -181,6 +185,13 @@ public class CarMovement : MonoBehaviour {
                     break;
             }
         }
+    }
+
+    IEnumerator death(Collision2D col, char type)
+    {
+        col.gameObject.GetComponent<Animator>().runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Car");
+        yield return new WaitForSeconds(0.5f);
+        ml.Despawn(type, col.gameObject);
     }
 
     void OnCollisionExit2D(Collision2D col)
