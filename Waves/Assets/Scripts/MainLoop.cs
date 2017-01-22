@@ -37,8 +37,15 @@ public class MainLoop : MonoBehaviour {
 		numPassed = 0;
 		level = 0;
 		gamestate = "start";
-		AdvanceLevel();
+		wCars = new List<GameObject>();
+		aCars = new List<GameObject>();
+		sCars = new List<GameObject>();
+		dCars = new List<GameObject>();
+		pedestrians = new List<GameObject>();
 		lives = 5;
+		AdvanceLevel();
+		
+		
 	}
 	
 	// Update is called once per frame
@@ -149,28 +156,69 @@ public class MainLoop : MonoBehaviour {
 	
 	public void Despawn(char objType, GameObject obj)
 	{
-		// TODO add a despawn area
+		int i;
+		switch(objType)
+		{
+			case 'W':
+				i = wCars.IndexOf(obj);
+				Destroy(wCars[i]);
+				wCars.RemoveAt(i);
+				break;
+			case 'A':
+				i = aCars.IndexOf(obj);
+				Destroy(aCars[i]);
+				aCars.RemoveAt(i);
+				break;
+			case 'S':
+				i = sCars.IndexOf(obj);
+				Destroy(sCars[i]);
+				sCars.RemoveAt(i);
+				break;
+			case 'D':
+				i = dCars.IndexOf(obj);
+				Destroy(dCars[i]);
+				dCars.RemoveAt(i);
+				break;
+			case 'P':
+				print("KILL");
+				i = pedestrians.IndexOf(obj);
+				Destroy(pedestrians[i]);
+				pedestrians.RemoveAt(i);
+				break;
+			default:
+				break;
+		}
 	}
 	
 	void SpawnCar(char dir, int spd)
 	{
+		GameObject car = Instantiate(genericCar);
 		switch(dir)
 		{
 			case 'W':
+				wCars.Add(car);
+				break;
 			case 'A':
+				aCars.Add(car);
+				break;
 			case 'S':
+				sCars.Add(car);
+				break;
 			case 'D':
+				dCars.Add(car);
+				break;
 			default:
 				break;
 		}
-		GameObject car = Instantiate(genericCar);
 		car.GetComponent<CarMovement>().TransformCar("type", dir, spd); // TODO CHANGE TYPE
 	}
 
     void SpawnPeople(int pos)
     {
         GameObject pedestrian = Instantiate(genericPedestrian);
-        pedestrian.GetComponent<PedestrianWalk>().Transform(pos); // TODO CHANGE TYPE
+        pedestrian.GetComponent<PedestrianWalk>().Transform(pos); 
+		pedestrians.Add(pedestrian);
+		
     }
 
     void IncrementScore()
@@ -181,7 +229,9 @@ public class MainLoop : MonoBehaviour {
 	/* Public function */
 	public void Crash()
 	{
-		gamestate = "gameover";
+		lives--;
+		if(lives < 1)
+			gamestate = "gameover";
 	}
 	
 }

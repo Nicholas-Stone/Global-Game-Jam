@@ -9,7 +9,7 @@ public class Intersection : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		//ml = 
+		ml = GameObject.Find("Main Camera").GetComponent<MainLoop>(); 
 	}
 	
 	// Update is called once per frame
@@ -25,7 +25,7 @@ public class Intersection : MonoBehaviour {
             if(!col.gameObject.GetComponentInParent<CarMovement>().pass)
             {
                 //set all cars to stop
-                foreach (GameObject car in GetComponentInParent<CopControls>().wcar)
+                foreach (GameObject car in ml.wCars)
                 {
                     car.GetComponent<CarMovement>().stopped = true;
                 }
@@ -39,7 +39,7 @@ public class Intersection : MonoBehaviour {
             if(!col.gameObject.GetComponentInParent<CarMovement>().pass)
             {
                 //set all cars to stop
-                foreach (GameObject car in GetComponentInParent<CopControls>().acar)
+                foreach (GameObject car in ml.aCars)
                 {
 					print("car");
                     car.GetComponent<CarMovement>().stopped = true;
@@ -53,7 +53,7 @@ public class Intersection : MonoBehaviour {
             if(!col.gameObject.GetComponentInParent<CarMovement>().pass)
             {
                 //set all cars to stop
-                foreach (GameObject car in GetComponentInParent<CopControls>().scar)
+                foreach (GameObject car in ml.sCars)
                 {
                     car.GetComponent<CarMovement>().stopped = true;
                 }
@@ -66,7 +66,7 @@ public class Intersection : MonoBehaviour {
             if(!col.gameObject.GetComponentInParent<CarMovement>().pass)
             {
                 //set all cars to stop
-                foreach (GameObject car in GetComponentInParent<CopControls>().dcar)
+                foreach (GameObject car in ml.dCars)
                 {
                     car.GetComponent<CarMovement>().stopped = true;
                 }

@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class CopControls : MonoBehaviour {
 
-    public bool w = true, a = true, s = true, d = true;
-    public List<GameObject> wcar;
-	public List<GameObject> acar;
-	public List<GameObject> scar;
-	public List<GameObject> dcar;
+    public bool w, a, s, d;
+	private MainLoop ml;
 
     public Sprite greenW;
     public Sprite greenA;
@@ -23,18 +20,15 @@ public class CopControls : MonoBehaviour {
     public GameObject aSign;
     public GameObject sSign;
     public GameObject dSign;
+	
 
     // Use this for initialization
     void Start () {
-		MainLoop ml = GameObject.Find("Main Camera").GetComponent<MainLoop>();
+		ml = GameObject.Find("Main Camera").GetComponent<MainLoop>();
         wSign.GetComponent<SpriteRenderer>().sprite = redW;
         aSign.GetComponent<SpriteRenderer>().sprite = redA;
         sSign.GetComponent<SpriteRenderer>().sprite = redS;
         dSign.GetComponent<SpriteRenderer>().sprite = redD;
-		wcar = ml.wCars;
-		acar = ml.aCars;
-		scar = ml.sCars;
-		dcar = ml.dCars;
     }
 
     // Update is called once per frame
@@ -51,11 +45,13 @@ public class CopControls : MonoBehaviour {
             {
                 wSign.GetComponent<SpriteRenderer>().sprite = redW;
             }
-            if (w && wcar != null && wcar.Count > 0)
+			print(ml.wCars.Count);
+            if (w && ml.wCars != null && ml.wCars.Count > 0)
             {
                 // set each car in direction to movings
-                foreach (GameObject car in wcar)
+                foreach (GameObject car in ml.wCars)
                 {
+					car.GetComponent<CarMovement>().pass = w;
                     car.GetComponent<CarMovement>().stopped = false;
                 }
             }
@@ -71,11 +67,12 @@ public class CopControls : MonoBehaviour {
             {
                 aSign.GetComponent<SpriteRenderer>().sprite = redA;
             }
-            if (a && acar != null && acar.Count > 0)
+            if (a && ml.aCars != null && ml.aCars.Count > 0)
             {
                 // set each car in direction to movings
-                foreach (GameObject car in acar)
+                foreach (GameObject car in ml.aCars)
                 {
+					car.GetComponent<CarMovement>().pass = a;
                     car.GetComponent<CarMovement>().stopped = false;
                 }
             }
@@ -91,11 +88,12 @@ public class CopControls : MonoBehaviour {
             {
                 sSign.GetComponent<SpriteRenderer>().sprite = redS;
             }
-            if (s && scar != null && scar.Count > 0)
+            if (s && ml.sCars != null && ml.sCars.Count > 0)
             {
                 // set each car in direction to movings
-                foreach (GameObject car in scar)
+                foreach (GameObject car in ml.sCars)
                 {
+					car.GetComponent<CarMovement>().pass = s;
                     car.GetComponent<CarMovement>().stopped = false;
                 }
             }
@@ -111,11 +109,15 @@ public class CopControls : MonoBehaviour {
             {
                 dSign.GetComponent<SpriteRenderer>().sprite = redD;
             }
-            if (d && dcar != null && dcar.Count > 0)
+			
+            if (ml.dCars != null && ml.dCars.Count > 0)
             {
+				print("nani");
                 // set each car in direction to movings
-                foreach (GameObject car in dcar)
+                foreach (GameObject car in ml.dCars)
                 {
+					print(d);
+					car.GetComponent<CarMovement>().pass = d;
                     car.GetComponent<CarMovement>().stopped = false;
                 }
             }

@@ -26,7 +26,7 @@ public class Despawn : MonoBehaviour {
 			ml.Despawn('S', col.gameObject);
 		if(col.gameObject.tag == "dcar")
 			ml.Despawn('D', col.gameObject);
-		if(col.gameObject.tag == "pedestrian")
+		if(col.gameObject.tag == "ppl")
 			ml.Despawn('P', col.gameObject);
 	}
 }
