@@ -28,7 +28,7 @@ public class CarMovement : MonoBehaviour {
 		switch(dir)
 		{
 			case 'W': // W case
-				this.transform.position = new Vector3(-15f, 6.5f, 0f);
+				this.transform.position = new Vector3(-15f, 7f, 0f);
 				movement = new Vector3(2, -1, 0); 
 				transform.gameObject.tag = "wcar";
                 GetComponent<SpriteRenderer>().sprite = w;
@@ -38,7 +38,7 @@ public class CarMovement : MonoBehaviour {
                                                                             new Vector2(-0.9f, 0.8f)});
 				break;
 			case 'A': // A case
-				this.transform.position = new Vector3(-10.5f, -6.5f, 0f);
+				this.transform.position = new Vector3(-10.5f, -6f, 0f);
 				movement = new Vector3(2, 1, 0);
 				transform.gameObject.tag ="acar";
                 GetComponent<SpriteRenderer>().sprite = a;
@@ -48,7 +48,7 @@ public class CarMovement : MonoBehaviour {
                                                                             new Vector2(0.2f, 0.7f)});
                 break;
 			case 'S':
-				this.transform.position = new Vector3(15f, -6.5f, 0f);
+				this.transform.position = new Vector3(15f, -7f, 0f);
 				movement = new Vector3(-2, 1, 0);
 				transform.gameObject.tag = "scar";
                 GetComponent<SpriteRenderer>().sprite = s;
@@ -84,5 +84,11 @@ public class CarMovement : MonoBehaviour {
 		{
 			GameObject.Find("Main Camera").GetComponent<MainLoop>().Crash();
 		}
+    }
+
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        Destroy(col.gameObject);
     }
 }

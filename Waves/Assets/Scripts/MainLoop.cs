@@ -5,10 +5,10 @@ using UnityEngine;
 public class MainLoop : MonoBehaviour {
 	/* Prefabs */
 	public GameObject genericCar;
-	
-	/* Text */
-	
-	public GameObject counter;
+    public GameObject genericPedestrian;
+
+    /* Text */
+    public GameObject counter;
 	public GameObject lvltext;
 	public GameObject gameover;
 	public GameObject winrar;
@@ -19,19 +19,18 @@ public class MainLoop : MonoBehaviour {
 	public GameObject dButton;
 	
 	/* Cars */
-	private GameObject[] wCars;
-	private GameObject[] aCars;
-	private GameObject[] sCars;
-	private GameObject[] dCars;
-	private Vector3 wSpawn = new Vector3(-15f, 6.5f, 0f);
-	private Vector3 aSpawn;
-	private Vector3 sSpawn;
-	private Vector3 dSpawn;
+	public List<GameObject> wCars;
+	public List<GameObject> aCars;
+	public List<GameObject> sCars;
+	public List<GameObject> dCars;
+	public bool wSpawn, aSpawn, sSpawn, dSpawn;
 	
 	/* Other stuff */
+	private List<GameObject> pedestrians;
 	private string gamestate;
 	public int numPassed;
 	public int level;
+	private int lives;
 
 	// Use this for initialization
 	void Start () {
@@ -39,6 +38,7 @@ public class MainLoop : MonoBehaviour {
 		level = 0;
 		gamestate = "start";
 		AdvanceLevel();
+		lives = 5;
 	}
 	
 	// Update is called once per frame
@@ -59,7 +59,59 @@ public class MainLoop : MonoBehaviour {
 		{
 			
 		}
-	}
+
+        if(Random.value < 0.01 && Random.value > 0.5)
+        {
+            switch(Random.Range(0, 4))
+            {
+                case 0:
+                    SpawnCar('W', 1);
+                    break;
+                case 1:
+                    SpawnCar('A', 1);
+                    break;
+                case 2:
+                    SpawnCar('S', 1);
+                    break;
+                case 3:
+                    SpawnCar('D', 1);
+                    break;
+                default:
+                    SpawnCar('W', 1);
+                    break;
+            }
+        }
+
+        switch (Random.Range(0, 1000))
+        {
+            case 0:
+                SpawnPeople(0);
+                break;
+            case 1:
+                SpawnPeople(1);
+                break;
+            case 2:
+                SpawnPeople(2);
+                break;
+            case 3:
+                SpawnPeople(3);
+                break;
+            case 4:
+                SpawnPeople(4);
+                break;
+            case 5:
+                SpawnPeople(5);
+                break;
+            case 6:
+                SpawnPeople(6);
+                break;
+            case 7:
+                SpawnPeople(7);
+                break;
+            default:
+                break;
+        }
+    }
 	// UI TIMER, COUNTER, CONTROLS
 	
 	void AdvanceLevel()
@@ -95,18 +147,33 @@ public class MainLoop : MonoBehaviour {
 		level++;
 	}
 	
-	void DespawnCar()
+	public void Despawn(char objType, GameObject obj)
 	{
-		
+		// TODO add a despawn area
 	}
 	
 	void SpawnCar(char dir, int spd)
 	{
+		switch(dir)
+		{
+			case 'W':
+			case 'A':
+			case 'S':
+			case 'D':
+			default:
+				break;
+		}
 		GameObject car = Instantiate(genericCar);
 		car.GetComponent<CarMovement>().TransformCar("type", dir, spd); // TODO CHANGE TYPE
 	}
-	
-	void IncrementScore()
+
+    void SpawnPeople(int pos)
+    {
+        GameObject pedestrian = Instantiate(genericPedestrian);
+        pedestrian.GetComponent<PedestrianWalk>().Transform(pos); // TODO CHANGE TYPE
+    }
+
+    void IncrementScore()
 	{
 		
 	}

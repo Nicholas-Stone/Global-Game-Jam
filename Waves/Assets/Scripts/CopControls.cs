@@ -5,10 +5,10 @@ using UnityEngine;
 public class CopControls : MonoBehaviour {
 
     public bool w = true, a = true, s = true, d = true;
-    public GameObject[] wcar;
-	public GameObject[] acar;
-	public GameObject[] scar;
-	public GameObject[] dcar;
+    public List<GameObject> wcar;
+	public List<GameObject> acar;
+	public List<GameObject> scar;
+	public List<GameObject> dcar;
 
     public Sprite greenW;
     public Sprite greenA;
@@ -26,10 +26,15 @@ public class CopControls : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+		MainLoop ml = GameObject.Find("Main Camera").GetComponent<MainLoop>();
         wSign.GetComponent<SpriteRenderer>().sprite = redW;
         aSign.GetComponent<SpriteRenderer>().sprite = redA;
         sSign.GetComponent<SpriteRenderer>().sprite = redS;
         dSign.GetComponent<SpriteRenderer>().sprite = redD;
+		wcar = ml.wCars;
+		acar = ml.aCars;
+		scar = ml.sCars;
+		dcar = ml.dCars;
     }
 
     // Update is called once per frame
@@ -46,15 +51,13 @@ public class CopControls : MonoBehaviour {
             {
                 wSign.GetComponent<SpriteRenderer>().sprite = redW;
             }
-            if (w && wcar != null && wcar.Length > 0)
+            if (w && wcar != null && wcar.Count > 0)
             {
                 // set each car in direction to movings
                 foreach (GameObject car in wcar)
                 {
                     car.GetComponent<CarMovement>().stopped = false;
                 }
-                //set front car to pass intersection
-                wcar[wcar.Length - 1].GetComponent<CarMovement>().pass = true;
             }
         }
         if (Input.GetKeyDown("a"))
@@ -68,15 +71,13 @@ public class CopControls : MonoBehaviour {
             {
                 aSign.GetComponent<SpriteRenderer>().sprite = redA;
             }
-            if (a && acar != null && acar.Length > 0)
+            if (a && acar != null && acar.Count > 0)
             {
                 // set each car in direction to movings
                 foreach (GameObject car in acar)
                 {
                     car.GetComponent<CarMovement>().stopped = false;
                 }
-                //set front car to pass intersection
-                acar[acar.Length - 1].GetComponent<CarMovement>().pass = true;
             }
         }
         if (Input.GetKeyDown("s"))
@@ -90,15 +91,13 @@ public class CopControls : MonoBehaviour {
             {
                 sSign.GetComponent<SpriteRenderer>().sprite = redS;
             }
-            if (s && scar != null && scar.Length > 0)
+            if (s && scar != null && scar.Count > 0)
             {
                 // set each car in direction to movings
                 foreach (GameObject car in scar)
                 {
                     car.GetComponent<CarMovement>().stopped = false;
                 }
-                //set front car to pass intersection
-                scar[scar.Length - 1].GetComponent<CarMovement>().pass = true;
             }
         }
         if (Input.GetKeyDown("d"))
@@ -112,15 +111,13 @@ public class CopControls : MonoBehaviour {
             {
                 dSign.GetComponent<SpriteRenderer>().sprite = redD;
             }
-            if (d && dcar != null && dcar.Length > 0)
+            if (d && dcar != null && dcar.Count > 0)
             {
                 // set each car in direction to movings
                 foreach (GameObject car in dcar)
                 {
                     car.GetComponent<CarMovement>().stopped = false;
                 }
-                //set front car to pass intersection
-                dcar[dcar.Length - 1].GetComponent<CarMovement>().pass = true;
             }
         }
     }

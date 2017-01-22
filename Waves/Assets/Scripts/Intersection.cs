@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Intersection : MonoBehaviour {
+	
+	private MainLoop ml;
 
 	// Use this for initialization
 	void Start () {
-		
+		//ml = 
 	}
 	
 	// Update is called once per frame
@@ -22,9 +24,6 @@ public class Intersection : MonoBehaviour {
             col.gameObject.GetComponentInParent<CarMovement>().pass = GetComponentInParent<CopControls>().w;
             if(!col.gameObject.GetComponentInParent<CarMovement>().pass)
             {
-                //get all cars in direction that haven't passed
-                GameObject[] allWCar = GameObject.FindGameObjectsWithTag("wcar");
-                GetComponentInParent<CopControls>().wcar = Array.FindAll(allWCar, car => !car.GetComponent<CarMovement>().pass);
                 //set all cars to stop
                 foreach (GameObject car in GetComponentInParent<CopControls>().wcar)
                 {
@@ -32,18 +31,17 @@ public class Intersection : MonoBehaviour {
                 }
             }
             col.gameObject.GetComponentInParent<CarMovement>().hit = true;
+			
         }
 		if (col.gameObject.tag == "acar")
         {
             col.gameObject.GetComponentInParent<CarMovement>().pass = GetComponentInParent<CopControls>().a;
             if(!col.gameObject.GetComponentInParent<CarMovement>().pass)
             {
-                //get all cars in direction that haven't passed
-                GameObject[] allWCar = GameObject.FindGameObjectsWithTag("acar");
-                GetComponentInParent<CopControls>().acar = Array.FindAll(allWCar, car => !car.GetComponent<CarMovement>().pass);
                 //set all cars to stop
                 foreach (GameObject car in GetComponentInParent<CopControls>().acar)
                 {
+					print("car");
                     car.GetComponent<CarMovement>().stopped = true;
                 }
             }
@@ -54,9 +52,6 @@ public class Intersection : MonoBehaviour {
             col.gameObject.GetComponentInParent<CarMovement>().pass = GetComponentInParent<CopControls>().s;
             if(!col.gameObject.GetComponentInParent<CarMovement>().pass)
             {
-                //get all cars in direction that haven't passed
-                GameObject[] allWCar = GameObject.FindGameObjectsWithTag("scar");
-                GetComponentInParent<CopControls>().scar = Array.FindAll(allWCar, car => !car.GetComponent<CarMovement>().pass);
                 //set all cars to stop
                 foreach (GameObject car in GetComponentInParent<CopControls>().scar)
                 {
@@ -70,9 +65,6 @@ public class Intersection : MonoBehaviour {
             col.gameObject.GetComponentInParent<CarMovement>().pass = GetComponentInParent<CopControls>().d;
             if(!col.gameObject.GetComponentInParent<CarMovement>().pass)
             {
-                //get all cars in direction that haven't passed
-                GameObject[] allWCar = GameObject.FindGameObjectsWithTag("dcar");
-                GetComponentInParent<CopControls>().dcar = Array.FindAll(allWCar, car => !car.GetComponent<CarMovement>().pass);
                 //set all cars to stop
                 foreach (GameObject car in GetComponentInParent<CopControls>().dcar)
                 {
