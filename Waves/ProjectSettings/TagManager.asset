@@ -11,6 +11,8 @@ TagManager:
   - acar
   - scar
   - dcar
+  - ppl
+  - pplspawn
   layers:
   - Default
   - TransparentFX
